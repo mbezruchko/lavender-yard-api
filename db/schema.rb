@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20220622220951) do
+ActiveRecord::Schema.define(version: 20220623180514) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(version: 20220622220951) do
     t.datetime "updated_at",  null: false
     t.string   "title"
     t.text     "description"
+  end
+
+  create_table "application_settings", force: :cascade do |t|
+    t.integer  "singleton_guard"
+    t.string   "email"
+    t.string   "phone_main"
+    t.string   "phone_additional"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["singleton_guard"], name: "index_application_settings_on_singleton_guard", unique: true, using: :btree
   end
 
   create_table "books", force: :cascade do |t|
